@@ -10,6 +10,7 @@ namespace Minesweeper
             /* Static Grid Creation Method */
 
             // Creating Playing Grid
+            
             string [,] grid = new string [10, 10];
                      
             /* Static Bomb Creation Method */
@@ -36,20 +37,51 @@ namespace Minesweeper
            while (bomb == false)
             {
                 Console.WriteLine("Column Number:");
-                string col  = Console.ReadLine();
+                string col = Console.ReadLine();
+                Console.WriteLine("");
+                try
+                {
+                    if (col.Length > 1 || col.Length <= 0)
+                        throw new Exception("Please input number between 0 and 9");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Column Number:");
+                    col = Console.ReadLine();
+                    Console.WriteLine("");
+
+                }
                 Console.WriteLine("Row Number:");
                 string row = Console.ReadLine();
+                Console.WriteLine("");
+                try
+                {
+                    if (row.Length > 1 || row.Length <= 0)
+                        throw new Exception("Please input number between 0 and 9");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Row Number:");
+                    row = Console.ReadLine();
+                    Console.WriteLine("");
+
+                }
+
+                //Console.WriteLine("");
+                Console.WriteLine($"Cell chosen: [{col},{row}]");
+
                 char[] colChar = col.ToCharArray();
                 char[] rowChar = row.ToCharArray();
                 int a = (colChar[0] - '0');
                 int b = (rowChar[0] - '0');
 
+                
                 // Checking if user input corresponds to a bomb location
                 if (grid[a, b] != "Bomb")
                 {
-                    Console.WriteLine("");
-                    Console.WriteLine("Nice! Keep going!");
-                    Console.WriteLine("");
+                    game.NoBombMessage();
                 }
 
                 // Lose condition
