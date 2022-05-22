@@ -7,38 +7,42 @@ namespace Minesweeper
     {
         static void Main(string[] args)
         {
-            
+            /* Static Grid Creation Method */
+
             // Creating Playing Grid
             string [,] grid = new string [10, 10];
-
-            int x = 0; // Column
-            int y = 0; // Row
+                     
+            /* Static Bomb Creation Method */
 
             Random rnd = new Random(); // New instance of Random Class
 
             // Creating 10 randomly placed bombs
            for (int i = 0; i < 10; i++)
             {
-                x = rnd.Next(0, 9);
-                y = rnd.Next(0, 9);
+                int x = rnd.Next(0, 9);
+                int y = rnd.Next(0, 9);
 
                 grid[x, y] = "Bomb";
             }
 
-           // User Welcome Messages!
-            Console.WriteLine("Welcome to the Pirate Bay version of Minesweeper!");
-            Console.WriteLine("To begin:");
-            Console.WriteLine("");
+            // User Welcome Message!            
+            game.Welcome();
 
 
             // Allowing User to Make Guesses
-           for (int i = 0; i <= 90; i++)
+            bool bomb = false;
+
+
+           while (bomb == false)
             {
-                Console.WriteLine("Input 2 numbers:");
-                string UserGuess = Console.ReadLine();
-                char[] characters = UserGuess.ToCharArray();
-                int a = (characters[0] - '0');
-                int b = (characters[2] - '0');
+                Console.WriteLine("Column Number:");
+                string col  = Console.ReadLine();
+                Console.WriteLine("Row Number:");
+                string row = Console.ReadLine();
+                char[] colChar = col.ToCharArray();
+                char[] rowChar = row.ToCharArray();
+                int a = (colChar[0] - '0');
+                int b = (rowChar[0] - '0');
 
                 // Checking if user input corresponds to a bomb location
                 if (grid[a, b] != "Bomb")
@@ -51,17 +55,16 @@ namespace Minesweeper
                 // Lose condition
                 if (grid[a, b] == "Bomb")
                 {
-                    goto AfterGame;
+                    
+                    goto EndGame;
                 }   
 
             }
 
 
-           // Endgame message :(
-        AfterGame:
-            Console.WriteLine("");
-            Console.WriteLine("Boom!");
-            Console.WriteLine("Better luck next time.");
+        // Endgame message :(
+        EndGame:
+            game.EndGame();
 
         }
     }

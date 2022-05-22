@@ -7,8 +7,13 @@ namespace Minesweeper
         // user will be able to input 2 numbers that serve as coordinates eg. 5, 10
         // our grid will be created at run time along with the cells that are bombs
 
-        public grid()
+        int cols;
+        int rows;
+
+        public static string [,] GridCreator()
         {
+            string[,] PlayingGrid = new string[10, 10];
+            return PlayingGrid;
         }
     }
 }
