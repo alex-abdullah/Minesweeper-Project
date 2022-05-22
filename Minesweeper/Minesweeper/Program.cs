@@ -41,6 +41,9 @@ namespace Minesweeper
             // Allowing User to Make Guesses
             bool bomb = false;
 
+            // Guess counter
+            int guessCounter = 0;
+
 
            while (bomb == false)
             {
@@ -50,7 +53,7 @@ namespace Minesweeper
 
                 while (a == -1)
                 {
-                    Console.WriteLine($"Please input column number between {0} and {gridWidth - 1}");
+                    Console.WriteLine($"Enter column number between {0} and {gridWidth - 1}");
                     string col = Console.ReadLine();
                     Console.WriteLine("");
 
@@ -65,7 +68,7 @@ namespace Minesweeper
 
                 while (b == -1)
                 {
-                    Console.WriteLine("Row Number:");
+                    Console.WriteLine($"Enter row number between {0} and {gridHeight - 1}");
                     string row = Console.ReadLine();
                     Console.WriteLine("");
 
@@ -80,20 +83,28 @@ namespace Minesweeper
                             
                                                
                 Console.WriteLine($"Cell chosen: [{a},{b}]");
-                                
-                if (grid[a, b].isBomb == false)
+
+                //Storing User's Guess
+                Cell userGuess = grid[a, b];
+
+                if (userGuess.isBomb == false && userGuess.alreadyChecked == true)
                 {
-                    game.NoBombMessage();
-                    grid[a, b].alreadyChecked = true;
+                    game.CellAlreadyChosen();
                 }
-                else
+
+                if (userGuess.isBomb == false && userGuess.alreadyChecked == false)
+                {
+                    guessCounter++;
+                    userGuess.alreadyChecked = true;
+                    Console.WriteLine($"Nice! {guessCounter} down {(gridHeight * gridWidth) - (10 + guessCounter)} to go!");
+                    Console.WriteLine("");
+                }
+
+                if (userGuess.isBomb == true)
                 {
                     bomb = true;
-                }
-
-                            
+                }                            
             }
-
 
         // Endgame message :(
         

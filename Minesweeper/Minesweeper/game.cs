@@ -5,7 +5,7 @@ namespace Minesweeper
     {
         public static void Welcome()
         {
-            Console.WriteLine("Welcome to the Pirate Bay version of Minesweeper!");
+            Console.WriteLine("Welcome to Pirate Bay Minesweeper! <(^o^)>");
             Console.WriteLine("");
             Console.WriteLine("*** INSTRUCTIONS ***");
             Console.WriteLine("");
@@ -18,18 +18,19 @@ namespace Minesweeper
             Console.WriteLine("");
         }
 
+        public static void CellAlreadyChosen()
+        {
+            Console.WriteLine("Cell has already been selected.");
+            Console.WriteLine("Please choose another cell.");
+            Console.WriteLine("");
+        }
+               
         public static void EndGame()
         {
             Console.WriteLine("");
             Console.WriteLine("BOOM!");
             Console.WriteLine("");
             Console.WriteLine("Better luck next time.");
-        }
-
-        public static void NoBombMessage()
-        {            
-            Console.WriteLine("Nice! Keep going!");
-            Console.WriteLine("");
         }
 
         public static void InitializeGrid(Cell[,] grid, int gridWidth, int gridHeight)
@@ -68,26 +69,6 @@ namespace Minesweeper
                 Console.WriteLine("Valid number was not entered");
                 return -1;
             }
-        }
-        public static int GuessCounter(Cell[,] grid, int col, int row)
-        {
-            bool alreadySelected = true;
-            while(alreadySelected == true)
-            {
-            try
-            {
-                if(grid[col,row].alreadyChecked)
-                    throw new Exception("Cell has already been selected.");
-
-            }
-                catch
-                {
-
-
-                }
-
-            }
-        }
-
+        }        
     }
 }
