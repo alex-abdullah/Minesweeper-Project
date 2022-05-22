@@ -1,13 +1,12 @@
 ﻿using System;
 namespace Minesweeper
 {
-    public class cell
+    public class Cell
     {
-        public string Status;
+        public bool isBomb;
+        public bool alreadyChecked = false;
 
-        public cell(string status)
-        {
-            Status = status;
-        }
+        public Cell()
+        { }
     }
 }

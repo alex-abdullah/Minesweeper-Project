@@ -31,5 +31,19 @@ namespace Minesweeper
             Console.WriteLine("Nice! Keep going!");
             Console.WriteLine("");
         }
+
+        public static void InitializeGrid(Cell[,] grid, int gridWidth, int gridHeight)
+        {
+            // For each cell in the grid (gridWidth x gridHeigh cells), initialize the object refernece
+            for (int i = 0; i < gridWidth; i++)
+            {
+                for (int j = 0; j < gridHeight; j++)
+                {
+                    // Initializes the refernce to a real object instance
+                    // The new keyword actually allocates the memory and creates the object for you
+                    grid[i, j] = new Cell();
+                }
+            }
+        }
     }
 }

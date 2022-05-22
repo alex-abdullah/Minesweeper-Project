@@ -3,15 +3,41 @@ using System.Collections.Generic;
 
 namespace Minesweeper
 {
-    class Program
-    {
+    class Program {
+    
+
+
         static void Main(string[] args)
         {
+
+
+            //3 magic types of things
+            //1. is primitives (int, float, char, double, long, bool) NO REFERNCES
+            //2. is objects, where you ALWAYS interact with an object via a reference
+            //3. is arrays, which work the same as objects (use refernce)
+
+            //2 references of the same size
+            //int[] arr;
+            //int[] arr2;
+
+            //But if you follow ther ferences into RAM (memory), thats where the differnet
+            //arr = new int[10];
+            //arr2 = new int[12];
+            
+
+
             /* Static Grid Creation Method */
 
             // Creating Playing Grid
-            
-            string [,] grid = new string [10, 10];
+
+            const int gridWidth = 10;
+            const int gridHeight = 10;
+
+            // Creates gridWidth x gridHeight null references
+            Cell [,] grid = new Cell [gridWidth, gridHeight];
+
+            // One-time initialize (10x10 iterations)
+            game.InitializeGrid(grid, gridWidth, gridHeight);
                      
             /* Static Bomb Creation Method */
 
@@ -23,7 +49,7 @@ namespace Minesweeper
                 int x = rnd.Next(0, 9);
                 int y = rnd.Next(0, 9);
 
-                grid[x, y] = "Bomb";
+                grid[x, y].isBomb = true;
             }
 
             // User Welcome Message!            
@@ -36,9 +62,16 @@ namespace Minesweeper
 
            while (bomb == false)
             {
+
+                
+
                 Console.WriteLine("Column Number:");
                 string col = Console.ReadLine();
                 Console.WriteLine("");
+
+                
+
+
                 try
                 {
                     if (col.Length > 1 || col.Length <= 0)
@@ -79,23 +112,24 @@ namespace Minesweeper
 
                 
                 // Checking if user input corresponds to a bomb location
-                if (grid[a, b] != "Bomb")
+                // Shorter hand notation is !grid[a,b].isBomb
+                if (grid[a, b].isBomb == false)
                 {
                     game.NoBombMessage();
                 }
-
-                // Lose condition
-                if (grid[a, b] == "Bomb")
+                else
                 {
-                    
-                    goto EndGame;
-                }   
+                    bomb = true;
+                }
 
+
+
+            
             }
 
 
         // Endgame message :(
-        EndGame:
+        
             game.EndGame();
 
         }
