@@ -1,0 +1,13 @@
+/Users/alexabdullah/Dropbox/Mac/Desktop/all-wooliesx-work/woolies-x/projects/Minesweeper-Project/Minesweeper/Minesweeper/obj/Debug/netcoreapp3.1/Minesweeper.csproj.AssemblyReference.cache
+/Users/alexabdullah/Dropbox/Mac/Desktop/all-wooliesx-work/woolies-x/projects/Minesweeper-Project/Minesweeper/Minesweeper/obj/Debug/netcoreapp3.1/Minesweeper.GeneratedMSBuildEditorConfig.editorconfig
+/Users/alexabdullah/Dropbox/Mac/Desktop/all-wooliesx-work/woolies-x/projects/Minesweeper-Project/Minesweeper/Minesweeper/obj/Debug/netcoreapp3.1/Minesweeper.AssemblyInfoInputs.cache
+/Users/alexabdullah/Dropbox/Mac/Desktop/all-wooliesx-work/woolies-x/projects/Minesweeper-Project/Minesweeper/Minesweeper/obj/Debug/netcoreapp3.1/Minesweeper.AssemblyInfo.cs
+/Users/alexabdullah/Dropbox/Mac/Desktop/all-wooliesx-work/woolies-x/projects/Minesweeper-Project/Minesweeper/Minesweeper/obj/Debug/netcoreapp3.1/Minesweeper.csproj.CoreCompileInputs.cache
+/Users/alexabdullah/Dropbox/Mac/Desktop/all-wooliesx-work/woolies-x/projects/Minesweeper-Project/Minesweeper/Minesweeper/bin/Debug/netcoreapp3.1/Minesweeper.deps.json
+/Users/alexabdullah/Dropbox/Mac/Desktop/all-wooliesx-work/woolies-x/projects/Minesweeper-Project/Minesweeper/Minesweeper/bin/Debug/netcoreapp3.1/Minesweeper.runtimeconfig.json
+/Users/alexabdullah/Dropbox/Mac/Desktop/all-wooliesx-work/woolies-x/projects/Minesweeper-Project/Minesweeper/Minesweeper/bin/Debug/netcoreapp3.1/Minesweeper.runtimeconfig.dev.json
+/Users/alexabdullah/Dropbox/Mac/Desktop/all-wooliesx-work/woolies-x/projects/Minesweeper-Project/Minesweeper/Minesweeper/bin/Debug/netcoreapp3.1/Minesweeper.dll
+/Users/alexabdullah/Dropbox/Mac/Desktop/all-wooliesx-work/woolies-x/projects/Minesweeper-Project/Minesweeper/Minesweeper/bin/Debug/netcoreapp3.1/Minesweeper.pdb
+/Users/alexabdullah/Dropbox/Mac/Desktop/all-wooliesx-work/woolies-x/projects/Minesweeper-Project/Minesweeper/Minesweeper/obj/Debug/netcoreapp3.1/Minesweeper.dll
+/Users/alexabdullah/Dropbox/Mac/Desktop/all-wooliesx-work/woolies-x/projects/Minesweeper-Project/Minesweeper/Minesweeper/obj/Debug/netcoreapp3.1/Minesweeper.pdb
+/Users/alexabdullah/Dropbox/Mac/Desktop/all-wooliesx-work/woolies-x/projects/Minesweeper-Project/Minesweeper/Minesweeper/obj/Debug/netcoreapp3.1/Minesweeper.genruntimeconfig.cache

@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{D4A231FA-39EF-4282-9054-E37616A93F15}|Default">
+  <MonoDevelop.Ide.ItemProperties.Minesweeper FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Minesweeper/cell.cs">
+    <Files>
+      <File FileName="Minesweeper/Program.cs" Line="1" Column="1" />
+      <File FileName="Minesweeper/grid.cs" Line="9" Column="1" />
+      <File FileName="Minesweeper/cell.cs" Line="11" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Minesweeper" expanded="True">
+            <Node name="Minesweeper" expanded="True">
+              <Node name="cell.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
