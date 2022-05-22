@@ -10,28 +10,10 @@ namespace Minesweeper
         static void Main(string[] args)
         {
 
-
-            //3 magic types of things
-            //1. is primitives (int, float, char, double, long, bool) NO REFERNCES
-            //2. is objects, where you ALWAYS interact with an object via a reference
-            //3. is arrays, which work the same as objects (use refernce)
-
-            //2 references of the same size
-            //int[] arr;
-            //int[] arr2;
-
-            //But if you follow ther ferences into RAM (memory), thats where the differnet
-            //arr = new int[10];
-            //arr2 = new int[12];
-            
-
-
-            /* Static Grid Creation Method */
-
             // Creating Playing Grid
 
-            const int gridWidth = 10;
-            const int gridHeight = 10;
+            int gridWidth = 10;
+            int gridHeight = 10;
 
             // Creates gridWidth x gridHeight null references
             Cell [,] grid = new Cell [gridWidth, gridHeight];
@@ -102,6 +84,7 @@ namespace Minesweeper
                 if (grid[a, b].isBomb == false)
                 {
                     game.NoBombMessage();
+                    grid[a, b].alreadyChecked = true;
                 }
                 else
                 {

@@ -34,13 +34,12 @@ namespace Minesweeper
 
         public static void InitializeGrid(Cell[,] grid, int gridWidth, int gridHeight)
         {
-            // For each cell in the grid (gridWidth x gridHeigh cells), initialize the object refernece
+            // For each cell in the grid (gridWidth x gridHeigh cells), initialize the object reference
             for (int i = 0; i < gridWidth; i++)
             {
                 for (int j = 0; j < gridHeight; j++)
                 {
-                    // Initializes the refernce to a real object instance
-                    // The new keyword actually allocates the memory and creates the object for you
+                    // Initializes the reference to a real object instance
                     grid[i, j] = new Cell();
                 }
             }
@@ -70,5 +69,25 @@ namespace Minesweeper
                 return -1;
             }
         }
+        public static int GuessCounter(Cell[,] grid, int col, int row)
+        {
+            bool alreadySelected = true;
+            while(alreadySelected == true)
+            {
+            try
+            {
+                if(grid[col,row].alreadyChecked)
+                    throw new Exception("Cell has already been selected.");
+
+            }
+                catch
+                {
+
+
+                }
+
+            }
+        }
+
     }
 }
