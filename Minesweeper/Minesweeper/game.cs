@@ -45,5 +45,30 @@ namespace Minesweeper
                 }
             }
         }
+
+        //Returns -1 if not a valid index, otherwise returns the index
+        public static int TryParseIndex(string strIndex, int dimensionBound)
+        {
+            try
+            {
+                // Trying to convert user input to a number
+                int index = Int32.Parse(strIndex);
+                                
+                if(index >= 0 && index < dimensionBound)
+                {
+                    return index;
+                }
+                else
+                {
+                    Console.WriteLine("Valid number was not entered");
+                    return -1;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Valid number was not entered");
+                return -1;
+            }
+        }
     }
 }

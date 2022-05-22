@@ -63,56 +63,42 @@ namespace Minesweeper
            while (bomb == false)
             {
 
-                
+                int a = -1;
+                int b = -1;
 
-                Console.WriteLine("Column Number:");
-                string col = Console.ReadLine();
-                Console.WriteLine("");
-
-                
-
-
-                try
+                while (a == -1)
                 {
-                    if (col.Length > 1 || col.Length <= 0)
-                        throw new Exception("Please input number between 0 and 9");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine("Column Number:");
-                    col = Console.ReadLine();
+                    Console.WriteLine($"Please input column number between {0} and {gridWidth - 1}");
+                    string col = Console.ReadLine();
                     Console.WriteLine("");
 
+                    int res = game.TryParseIndex(col, gridWidth);
+
+                    // TODO Double check that col/height/row/width is consistent
+                    if (res != -1) // did not fail
+                    {
+                        a = res;   
+                    }
                 }
-                Console.WriteLine("Row Number:");
-                string row = Console.ReadLine();
-                Console.WriteLine("");
-                try
+
+                while (b == -1)
                 {
-                    if (row.Length > 1 || row.Length <= 0)
-                        throw new Exception("Please input number between 0 and 9");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
                     Console.WriteLine("Row Number:");
-                    row = Console.ReadLine();
+                    string row = Console.ReadLine();
                     Console.WriteLine("");
 
+                    int res = game.TryParseIndex(row, gridHeight);
+
+                    if (res != -1)
+                    {
+                        b = res;
+                    }
+
                 }
-
-                //Console.WriteLine("");
-                Console.WriteLine($"Cell chosen: [{col},{row}]");
-
-                char[] colChar = col.ToCharArray();
-                char[] rowChar = row.ToCharArray();
-                int a = (colChar[0] - '0');
-                int b = (rowChar[0] - '0');
-
-                
-                // Checking if user input corresponds to a bomb location
-                // Shorter hand notation is !grid[a,b].isBomb
+                            
+                                               
+                Console.WriteLine($"Cell chosen: [{a},{b}]");
+                                
                 if (grid[a, b].isBomb == false)
                 {
                     game.NoBombMessage();
@@ -122,9 +108,7 @@ namespace Minesweeper
                     bomb = true;
                 }
 
-
-
-            
+                            
             }
 
 
