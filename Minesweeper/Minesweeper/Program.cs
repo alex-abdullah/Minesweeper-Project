@@ -20,23 +20,13 @@ namespace Minesweeper
 
             // One-time initialize (10x10 iterations)
             game.InitializeGrid(grid, gridWidth, gridHeight);
-                     
-            /* Static Bomb Creation Method */
 
-            Random rnd = new Random(); // New instance of Random Class
-
-            // Creating 10 randomly placed bombs
-           for (int i = 0; i < 10; i++)
-            {
-                int x = rnd.Next(0, 9);
-                int y = rnd.Next(0, 9);
-
-                grid[x, y].isBomb = true;
-            }
+            // /* Static Bomb Creation Method */
+                       
+            game.BombCreator(grid, 10);
 
             // User Welcome Message!            
             game.Welcome();
-
 
             // Allowing User to Make Guesses
             bool bomb = false;
@@ -111,5 +101,12 @@ namespace Minesweeper
             game.EndGame();
 
         }
+
+        // TODO:
+
+        /* Generate message to indicate how many bombs are near coordinate
+         * Once MVP finished, push to GitHub and attempt to create
+         * Grid Class -> Speak to Pang
+         */
     }
 }

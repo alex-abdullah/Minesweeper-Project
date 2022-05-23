@@ -69,6 +69,24 @@ namespace Minesweeper
                 Console.WriteLine("Valid number was not entered");
                 return -1;
             }
-        }        
+        }
+
+        public static void BombCreator(Cell[,] grid, int maxBombs)
+        {
+            int j = 0;
+            Random rnd = new Random();
+
+            while (j <= maxBombs)
+            {
+                int col = rnd.Next(0, 9);
+                int row = rnd.Next(0, 9);
+                
+                if (!grid[col, row].isBomb)
+                {
+                    grid[col, row].isBomb = true;
+                    j++;
+                }
+            }
+        }
     }
 }
