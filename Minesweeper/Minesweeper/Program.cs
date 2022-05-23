@@ -21,19 +21,19 @@ namespace Minesweeper
             // One-time initialize (10x10 iterations)
             game.InitializeGrid(grid, gridWidth, gridHeight);
 
-            // /* Static Bomb Creation Method */
+            // Creating Bombs
                        
             game.BombCreator(grid, 10);
 
             // User Welcome Message!            
             game.Welcome();
 
-            // Allowing User to Make Guesses
-            bool bomb = false;
 
             // Guess counter
             int guessCounter = 0;
 
+            // Allowing User to Make Guesses
+            bool bomb = false;
 
            while (bomb == false)
             {
@@ -77,6 +77,10 @@ namespace Minesweeper
                 //Storing User's Guess
                 Cell userGuess = grid[a, b];
 
+                
+
+                //===============================================================
+
                 if (userGuess.isBomb == false && userGuess.alreadyChecked == true)
                 {
                     game.CellAlreadyChosen();
@@ -90,10 +94,43 @@ namespace Minesweeper
                     Console.WriteLine("");
                 }
 
+                int bombCounter = 0;
+                               
+                
+                if (a - 1 >= 0 && grid[(a - 1), b].isBomb == true)
+                    bombCounter++;
+
+                if (a + 1 <= 9 && grid[(a + 1), b].isBomb == true)
+                    bombCounter++;
+
+                if (b - 1 >= 0 && grid[a, (b - 1)].isBomb == true)
+                    bombCounter++;
+
+                if (b + 1 <= 9 && grid[a, (b + 1)].isBomb == true)
+                    bombCounter++;
+
+                if (a - 1 > 0 && b - 1 >= 0 && grid[(a - 1), (b - 1)].isBomb == true)
+                    bombCounter++;
+
+                if (a + 1 <= 9 && b - 1 >= 0 && grid[(a + 1), (b - 1)].isBomb == true)
+                    bombCounter++;
+
+                if (a + 1 <= 9 && b + 1 <= 9 && grid[(a + 1), (b + 1)].isBomb == true)
+                    bombCounter++;
+
+                if (a - 1 > 0 && b + 1 <= 9 && grid[(a - 1), (b + 1)].isBomb == true)
+                    {
+                    bombCounter++;              
+
+                    }
+
+                Console.WriteLine($"There are {bombCounter} bomb(s) nearby");
+
                 if (userGuess.isBomb == true)
                 {
                     bomb = true;
-                }                            
+                }
+
             }
 
         // Endgame message :(
