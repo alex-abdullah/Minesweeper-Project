@@ -50,9 +50,8 @@ namespace Minesweeper
                     Console.WriteLine("");
 
                     int result = game.TryParseIndex(col, gridWidth);
-
-                    // TODO Double check that col/height/row/width is consistent
-                    if (result != -1) // did not fail
+                                        
+                    if (result != -1) 
                     {
                         userCol = result;
                     }
