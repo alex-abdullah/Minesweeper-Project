@@ -46,6 +46,25 @@ namespace Minesweeper
             }
         }
 
+        public static int BombCreator(Cell[,] grid, int maxBombs)
+        {
+            int j = 0;
+            Random rnd = new Random();
+
+            while (j <= maxBombs)
+            {
+                int col = rnd.Next(0, 9);
+                int row = rnd.Next(0, 9);
+                
+                if (!grid[col, row].isBomb)
+                {
+                    grid[col, row].isBomb = true;
+                    j++;
+                }
+            }
+            return j;
+        }
+
         //Returns -1 if not a valid index, otherwise returns the index
         public static int TryParseIndex(string strIndex, int dimensionBound)
         {
@@ -71,24 +90,6 @@ namespace Minesweeper
             }
         }
 
-        public static int BombCreator(Cell[,] grid, int maxBombs)
-        {
-            int j = 0;
-            Random rnd = new Random();
-
-            while (j <= maxBombs)
-            {
-                int col = rnd.Next(0, 9);
-                int row = rnd.Next(0, 9);
-                
-                if (!grid[col, row].isBomb)
-                {
-                    grid[col, row].isBomb = true;
-                    j++;
-                }
-            }
-            return j;
-        }
 
         public static string BombChecker(Cell[,] grid, int col, int row)
         {

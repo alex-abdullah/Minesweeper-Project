@@ -40,44 +40,44 @@ namespace Minesweeper
             while (gameActive == true)
             {
 
-                int a = -1;
-                int b = -1;
+                int userCol = -1;
+                int userRow = -1;
 
-                while (a == -1)
+                while (userCol == -1)
                 {
                     Console.WriteLine($"Enter column number between {0} and {gridWidth - 1}");
                     string col = Console.ReadLine();
                     Console.WriteLine("");
 
-                    int res = game.TryParseIndex(col, gridWidth);
+                    int result = game.TryParseIndex(col, gridWidth);
 
                     // TODO Double check that col/height/row/width is consistent
-                    if (res != -1) // did not fail
+                    if (result != -1) // did not fail
                     {
-                        a = res;
+                        userCol = result;
                     }
                 }
 
-                while (b == -1)
+                while (userRow == -1)
                 {
                     Console.WriteLine($"Enter row number between {0} and {gridHeight - 1}");
                     string row = Console.ReadLine();
                     Console.WriteLine("");
 
-                    int res = game.TryParseIndex(row, gridHeight);
+                    int result = game.TryParseIndex(row, gridHeight);
 
-                    if (res != -1)
+                    if (result != -1)
                     {
-                        b = res;
+                        userRow = result;
                     }
 
                 }
 
 
-                Console.WriteLine($"Cell chosen: [{a},{b}]");
+                Console.WriteLine($"Cell chosen: [{userCol},{userRow}]");
 
                 //Storing User's Guess
-                Cell userGuess = grid[a, b];
+                Cell userGuess = grid[userCol, userRow];
 
 
                 if (userGuess.isBomb == false && userGuess.alreadyChecked == true)
@@ -95,10 +95,11 @@ namespace Minesweeper
 
 
                 // Checking for bombs
-                game.BombChecker(grid, a, b);
+                game.BombChecker(grid, userCol, userRow);
 
                 // Printing out number of bombs
-                Console.WriteLine(game.BombChecker(grid, a, b));
+                Console.WriteLine(game.BombChecker(grid, userCol, userRow));
+                Console.WriteLine("");
 
 
                 // Winner Winner Chicken Dinner :)
@@ -120,10 +121,5 @@ namespace Minesweeper
             }
         }      
 
-        // TODO:
-
-        /* Once MVP finished, push to GitHub and attempt to create
-         * Grid Class -> Speak to Pang
-         */
     }
 }
