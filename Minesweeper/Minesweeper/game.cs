@@ -71,7 +71,7 @@ namespace Minesweeper
             }
         }
 
-        public static void BombCreator(Cell[,] grid, int maxBombs)
+        public static int BombCreator(Cell[,] grid, int maxBombs)
         {
             int j = 0;
             Random rnd = new Random();
@@ -87,6 +87,7 @@ namespace Minesweeper
                     j++;
                 }
             }
+            return j;
         }
 
         public static string BombChecker(Cell[,] grid, int col, int row)

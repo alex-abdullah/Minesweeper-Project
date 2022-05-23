@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Minesweeper
 {
     class Program {
-    
+
 
 
         static void Main(string[] args)
@@ -14,17 +14,19 @@ namespace Minesweeper
 
             int gridWidth = 10;
             int gridHeight = 10;
+            int playingGrid = gridWidth * gridHeight;
 
             // Creates gridWidth x gridHeight null references
-            Cell [,] grid = new Cell [gridWidth, gridHeight];
+            Cell[,] grid = new Cell[gridWidth, gridHeight];
 
             // One-time initialize (10x10 iterations)
             game.InitializeGrid(grid, gridWidth, gridHeight);
 
             // Creating Bombs
-                       
+
             game.BombCreator(grid, 10);
 
+            
             // User Welcome Message!            
             game.Welcome();
 
@@ -33,9 +35,9 @@ namespace Minesweeper
             int guessCounter = 0;
 
             // Allowing User to Make Guesses
-            bool bomb = false;
+            bool gameActive = true;
 
-           while (bomb == false)
+            while (gameActive == true)
             {
 
                 int a = -1;
@@ -52,7 +54,7 @@ namespace Minesweeper
                     // TODO Double check that col/height/row/width is consistent
                     if (res != -1) // did not fail
                     {
-                        a = res;   
+                        a = res;
                     }
                 }
 
@@ -70,14 +72,14 @@ namespace Minesweeper
                     }
 
                 }
-                            
-                                               
+
+
                 Console.WriteLine($"Cell chosen: [{a},{b}]");
 
                 //Storing User's Guess
                 Cell userGuess = grid[a, b];
 
-                
+
                 if (userGuess.isBomb == false && userGuess.alreadyChecked == true)
                 {
                     game.CellAlreadyChosen();
@@ -87,7 +89,7 @@ namespace Minesweeper
                 {
                     guessCounter++;
                     userGuess.alreadyChecked = true;
-                    Console.WriteLine($"Nice! {guessCounter} down {(gridHeight * gridWidth) - (10 + guessCounter)} to go!");
+                    Console.WriteLine($"Nice! {guessCounter} down {playingGrid - (10 + guessCounter)} to go!");
                     Console.WriteLine("");
                 }
 
@@ -100,26 +102,23 @@ namespace Minesweeper
 
 
                 // Winner Winner Chicken Dinner :)
-                if (guessCounter == 90)
-                    goto Winner;
-                              
+                if (guessCounter == playingGrid - 10)
+                {
+                    Console.WriteLine("You win!!!");
+                    gameActive = false;
+                }
+
+
 
                 // If you choose a bomb :(
                 if (userGuess.isBomb == true)
                 {
-                    bomb = true;
+                    game.EndGame();
+                    gameActive = false;
                 }
 
             }
-
-        // Endgame message :(
-        
-            game.EndGame();
-
-
-        Winner:
-            Console.WriteLine("You win!!!");
-        }
+        }      
 
         // TODO:
 
