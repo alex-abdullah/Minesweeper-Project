@@ -78,9 +78,6 @@ namespace Minesweeper
                 Cell userGuess = grid[a, b];
 
                 
-
-                //===============================================================
-
                 if (userGuess.isBomb == false && userGuess.alreadyChecked == true)
                 {
                     game.CellAlreadyChosen();
@@ -94,38 +91,20 @@ namespace Minesweeper
                     Console.WriteLine("");
                 }
 
-                int bombCounter = 0;
-                               
-                
-                if (a - 1 >= 0 && grid[(a - 1), b].isBomb == true)
-                    bombCounter++;
 
-                if (a + 1 <= 9 && grid[(a + 1), b].isBomb == true)
-                    bombCounter++;
+                // Checking for bombs
+                game.BombChecker(grid, a, b);
 
-                if (b - 1 >= 0 && grid[a, (b - 1)].isBomb == true)
-                    bombCounter++;
+                // Printing out number of bombs
+                Console.WriteLine(game.BombChecker(grid, a, b));
 
-                if (b + 1 <= 9 && grid[a, (b + 1)].isBomb == true)
-                    bombCounter++;
 
-                if (a - 1 > 0 && b - 1 >= 0 && grid[(a - 1), (b - 1)].isBomb == true)
-                    bombCounter++;
+                // Winner Winner Chicken Dinner :)
+                if (guessCounter == 90)
+                    goto Winner;
+                              
 
-                if (a + 1 <= 9 && b - 1 >= 0 && grid[(a + 1), (b - 1)].isBomb == true)
-                    bombCounter++;
-
-                if (a + 1 <= 9 && b + 1 <= 9 && grid[(a + 1), (b + 1)].isBomb == true)
-                    bombCounter++;
-
-                if (a - 1 > 0 && b + 1 <= 9 && grid[(a - 1), (b + 1)].isBomb == true)
-                    {
-                    bombCounter++;              
-
-                    }
-
-                Console.WriteLine($"There are {bombCounter} bomb(s) nearby");
-
+                // If you choose a bomb :(
                 if (userGuess.isBomb == true)
                 {
                     bomb = true;
@@ -137,12 +116,14 @@ namespace Minesweeper
         
             game.EndGame();
 
+
+        Winner:
+            Console.WriteLine("You win!!!");
         }
 
         // TODO:
 
-        /* Generate message to indicate how many bombs are near coordinate
-         * Once MVP finished, push to GitHub and attempt to create
+        /* Once MVP finished, push to GitHub and attempt to create
          * Grid Class -> Speak to Pang
          */
     }

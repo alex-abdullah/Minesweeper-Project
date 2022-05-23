@@ -89,5 +89,36 @@ namespace Minesweeper
             }
         }
 
+        public static string BombChecker(Cell[,] grid, int col, int row)
+        {
+            int counter = 0;
+
+            if (col - 1 >= 0 && grid[(col - 1), row].isBomb == true)
+                counter++;
+
+            if (col + 1 <= 9 && grid[(col + 1), row].isBomb == true)
+                counter++;
+
+            if (row - 1 >= 0 && grid[col, (row - 1)].isBomb == true)
+                counter++;
+
+            if (row + 1 <= 9 && grid[col, (row + 1)].isBomb == true)
+                counter++;
+
+            if (col - 1 > 0 && row - 1 >= 0 && grid[(col - 1), (row - 1)].isBomb == true)
+                counter++;
+
+            if (col + 1 <= 9 && row - 1 >= 0 && grid[(col + 1), (row - 1)].isBomb == true)
+                counter++;
+
+            if (col + 1 <= 9 && row + 1 <= 9 && grid[(col + 1), (row + 1)].isBomb == true)
+                counter++;
+
+            if (col - 1 > 0 && row + 1 <= 9 && grid[(col - 1), (row + 1)].isBomb == true)            
+                counter++;
+
+            return $"There are {counter} bomb(s) nearby";
+        }
+
     }
 }
