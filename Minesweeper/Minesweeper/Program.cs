@@ -8,49 +8,27 @@ namespace Minesweeper
 
 
         static void Main(string[] args)
-        {
-
-            // Creating Playing Grid
-
-            int gridWidth = 10;
-            int gridHeight = 10;
-            int playingGrid = gridWidth * gridHeight;
-
-            // Creates gridWidth x gridHeight null references
-            Cell[,] grid = new Cell[gridWidth, gridHeight];
-
-            // One-time initialize (10x10 iterations)
-            game.InitializeGrid(grid, gridWidth, gridHeight);
-
-            // Creating Bombs
-
-            game.BombCreator(grid, 10);
-
-            
-            // User Welcome Message!            
-            game.Welcome();
-
-
-            // Guess counter
-            int guessCounter = 0;
+        {            
+            Grid playingGrid = new Grid(10, 10); // Creating Playing Grid 
+            playingGrid.BombCreator(10); // Generating Random bombs
+            game.Welcome(); // Welcome to the game :)     
+                        
+            int guessCounter = 0; // Guess counter
 
             // Allowing User to Make Guesses
             bool gameActive = true;
 
             while (gameActive == true)
             {
-
                 int userCol = -1;
                 int userRow = -1;
 
                 while (userCol == -1)
                 {
-                    Console.WriteLine($"Enter column number between {0} and {gridWidth - 1}");
+                    Console.WriteLine($"Enter column number between {0} and {playingGrid.GridWidth - 1}");
                     string col = Console.ReadLine();
                     Console.WriteLine("");
-
-                    int result = game.TryParseIndex(col, gridWidth);
-                                        
+                    int result = game.TryParseIndex(col, playingGrid.GridWidth);                                        
                     if (result != -1) 
                     {
                         userCol = result;
@@ -59,11 +37,10 @@ namespace Minesweeper
 
                 while (userRow == -1)
                 {
-                    Console.WriteLine($"Enter row number between {0} and {gridHeight - 1}");
+                    Console.WriteLine($"Enter row number between {0} and {playingGrid.GridHeight - 1}");
                     string row = Console.ReadLine();
                     Console.WriteLine("");
-
-                    int result = game.TryParseIndex(row, gridHeight);
+                    int result = game.TryParseIndex(row, playingGrid.GridHeight);
 
                     if (result != -1)
                     {
@@ -72,11 +49,8 @@ namespace Minesweeper
 
                 }
 
-
-                Console.WriteLine($"Cell chosen: [{userCol},{userRow}]");
-
-                //Storing User's Guess
-                Cell userGuess = grid[userCol, userRow];
+                Console.WriteLine($"Cell chosen: [{userCol},{userRow}]"); // Displaying cell chosen by user                
+                Cell userGuess = playingGrid.GameGrid[userCol, userRow]; //Storing User's Guess
 
 
                 if (userGuess.isBomb == false && userGuess.alreadyChecked == true)
@@ -88,26 +62,21 @@ namespace Minesweeper
                 {
                     guessCounter++;
                     userGuess.alreadyChecked = true;
-                    Console.WriteLine($"Nice! {guessCounter} down {playingGrid - (10 + guessCounter)} to go!");
+                    Console.WriteLine($"Nice! {guessCounter} down {playingGrid.GridWidth * playingGrid.GridHeight - (10 + guessCounter)} to go!");
                     Console.WriteLine("");
                 }
-
-
-                // Checking for bombs
-                game.BombChecker(grid, userCol, userRow);
-
-                // Printing out number of bombs
-                Console.WriteLine(game.BombChecker(grid, userCol, userRow));
+                                
+                playingGrid.BombChecker(userCol, userRow); // Checking for bombs                
+                Console.WriteLine(playingGrid.BombChecker(userCol, userRow)); // Displaying number of bombs
                 Console.WriteLine("");
 
 
                 // Winner Winner Chicken Dinner :)
-                if (guessCounter == playingGrid - 10)
+                if (guessCounter == playingGrid.GridWidth * playingGrid.GridHeight - 10)
                 {
                     Console.WriteLine("You win!!!");
                     gameActive = false;
                 }
-
 
 
                 // If you choose a bomb :(

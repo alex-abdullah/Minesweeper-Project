@@ -33,38 +33,7 @@ namespace Minesweeper
             Console.WriteLine("Better luck next time.");
         }
 
-        public static void InitializeGrid(Cell[,] grid, int gridWidth, int gridHeight)
-        {
-            // For each cell in the grid (gridWidth x gridHeigh cells), initialize the object reference
-            for (int i = 0; i < gridWidth; i++)
-            {
-                for (int j = 0; j < gridHeight; j++)
-                {
-                    // Initializes the reference to a real object instance
-                    grid[i, j] = new Cell();
-                }
-            }
-        }
-
-        public static int BombCreator(Cell[,] grid, int maxBombs)
-        {
-            int j = 0;
-            Random rnd = new Random();
-
-            while (j <= maxBombs)
-            {
-                int col = rnd.Next(0, 9);
-                int row = rnd.Next(0, 9);
-                
-                if (!grid[col, row].isBomb)
-                {
-                    grid[col, row].isBomb = true;
-                    j++;
-                }
-            }
-            return j;
-        }
-
+        
         //Returns -1 if not a valid index, otherwise returns the index
         public static int TryParseIndex(string strIndex, int dimensionBound)
         {
@@ -89,38 +58,5 @@ namespace Minesweeper
                 return -1;
             }
         }
-
-
-        public static string BombChecker(Cell[,] grid, int col, int row)
-        {
-            int counter = 0;
-
-            if (col - 1 >= 0 && grid[(col - 1), row].isBomb == true)
-                counter++;
-
-            if (col + 1 <= 9 && grid[(col + 1), row].isBomb == true)
-                counter++;
-
-            if (row - 1 >= 0 && grid[col, (row - 1)].isBomb == true)
-                counter++;
-
-            if (row + 1 <= 9 && grid[col, (row + 1)].isBomb == true)
-                counter++;
-
-            if (col - 1 > 0 && row - 1 >= 0 && grid[(col - 1), (row - 1)].isBomb == true)
-                counter++;
-
-            if (col + 1 <= 9 && row - 1 >= 0 && grid[(col + 1), (row - 1)].isBomb == true)
-                counter++;
-
-            if (col + 1 <= 9 && row + 1 <= 9 && grid[(col + 1), (row + 1)].isBomb == true)
-                counter++;
-
-            if (col - 1 > 0 && row + 1 <= 9 && grid[(col - 1), (row + 1)].isBomb == true)            
-                counter++;
-
-            return $"There are {counter} bomb(s) nearby";
-        }
-
     }
 }

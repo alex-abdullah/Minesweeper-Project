@@ -1,19 +1,81 @@
 ﻿using System;
 namespace Minesweeper
 {
-    public class grid
+    public class Grid
     {
-        // We want to construst a multi-dimensional array that holds our 100 cells
-        // user will be able to input 2 numbers that serve as coordinates eg. 5, 10
-        // our grid will be created at run time along with the cells that are bombs
+        public Cell[,] GameGrid;
+        public int GridWidth;
+        public int GridHeight;
 
-        int cols;
-        int rows;
-
-        public static string [,] GridCreator()
+        public Grid(int gridWidth, int gridHeight)
         {
-            string[,] PlayingGrid = new string[10, 10];
-            return PlayingGrid;
+            GridWidth = gridWidth;
+            GridHeight = gridHeight;
+
+            GameGrid = new Cell[GridWidth, GridHeight];
+            InitializeGrid();
+        }
+
+        private void InitializeGrid()
+        {
+            // For each cell in the grid (gridWidth x gridHeight cells), initialize the object reference
+            for (int i = 0; i < GridWidth; i++)
+            {
+                for (int j = 0; j < GridHeight; j++)
+                {                    
+                    GameGrid[i, j] = new Cell(); // Initializes the reference to a real object instance
+                }
+            }
+        }
+
+        public int BombCreator(int maxBombs)
+        {
+            int j = 0;
+            Random rnd = new Random();
+
+            while (j <= maxBombs)
+            {
+                int col = rnd.Next(0, 9);
+                int row = rnd.Next(0, 9);
+
+                if (!GameGrid[col, row].isBomb)
+                {
+                    GameGrid[col, row].isBomb = true;
+                    j++;
+                }
+            }
+            return j;
+        }
+
+        public string BombChecker(int col, int row)
+        {
+            int counter = 0;
+
+            if (col - 1 >= 0 && GameGrid[(col - 1), row].isBomb == true)
+                counter++;
+
+            if (col + 1 <= 9 && GameGrid[(col + 1), row].isBomb == true)
+                counter++;
+
+            if (row - 1 >= 0 && GameGrid[col, (row - 1)].isBomb == true)
+                counter++;
+
+            if (row + 1 <= 9 && GameGrid[col, (row + 1)].isBomb == true)
+                counter++;
+
+            if (col - 1 > 0 && row - 1 >= 0 && GameGrid[(col - 1), (row - 1)].isBomb == true)
+                counter++;
+
+            if (col + 1 <= 9 && row - 1 >= 0 && GameGrid[(col + 1), (row - 1)].isBomb == true)
+                counter++;
+
+            if (col + 1 <= 9 && row + 1 <= 9 && GameGrid[(col + 1), (row + 1)].isBomb == true)
+                counter++;
+
+            if (col - 1 > 0 && row + 1 <= 9 && GameGrid[(col - 1), (row + 1)].isBomb == true)
+                counter++;
+
+            return $"There are {counter} bomb(s) nearby";
         }
     }
 }
