@@ -3,27 +3,31 @@ namespace Minesweeper
 {
     public class Grid
     {
-        public Cell[,] GameGrid;
-        public int GridWidth;
-        public int GridHeight;
+        private Cell[,] _gameGrid;
+        private int _gridWidth;
+        private int _gridHeight;
+
+
+        public int GridWidth { get { return _gridWidth; } }
+        public int GridHeight { get { return _gridHeight; } }
+        public Cell[,] GameGrid { get { return _gameGrid; } }
 
         public Grid(int gridWidth, int gridHeight)
         {
-            GridWidth = gridWidth;
-            GridHeight = gridHeight;
-
-            GameGrid = new Cell[GridWidth, GridHeight];
+            _gridWidth = gridWidth;
+            _gridHeight = gridHeight;
+            _gameGrid = new Cell[_gridWidth, _gridHeight];
             InitializeGrid();
         }
 
         private void InitializeGrid()
         {
             // For each cell in the grid (gridWidth x gridHeight cells), initialize the object reference
-            for (int i = 0; i < GridWidth; i++)
+            for (int i = 0; i < _gridWidth; i++)
             {
-                for (int j = 0; j < GridHeight; j++)
+                for (int j = 0; j < _gridHeight; j++)
                 {                    
-                    GameGrid[i, j] = new Cell(); // Initializes the reference to a real object instance
+                    _gameGrid[i, j] = new Cell(); // Initializes the reference to a real object instance
                 }
             }
         }
@@ -38,9 +42,9 @@ namespace Minesweeper
                 int col = rnd.Next(0, 9);
                 int row = rnd.Next(0, 9);
 
-                if (!GameGrid[col, row].isBomb)
+                if (!_gameGrid[col, row].isBomb)
                 {
-                    GameGrid[col, row].isBomb = true;
+                    _gameGrid[col, row].isBomb = true;
                     j++;
                 }
             }
@@ -51,28 +55,28 @@ namespace Minesweeper
         {
             int counter = 0;
 
-            if (col - 1 >= 0 && GameGrid[(col - 1), row].isBomb == true)
+            if (col - 1 >= 0 && _gameGrid[(col - 1), row].isBomb == true)
                 counter++;
 
-            if (col + 1 <= 9 && GameGrid[(col + 1), row].isBomb == true)
+            if (col + 1 < _gridWidth && _gameGrid[(col + 1), row].isBomb == true)
                 counter++;
 
-            if (row - 1 >= 0 && GameGrid[col, (row - 1)].isBomb == true)
+            if (row - 1 >= 0 && _gameGrid[col, (row - 1)].isBomb == true)
                 counter++;
 
-            if (row + 1 <= 9 && GameGrid[col, (row + 1)].isBomb == true)
+            if (row + 1 < _gridHeight && _gameGrid[col, (row + 1)].isBomb == true)
                 counter++;
 
-            if (col - 1 > 0 && row - 1 >= 0 && GameGrid[(col - 1), (row - 1)].isBomb == true)
+            if (col - 1 > 0 && row - 1 >= 0 && _gameGrid[(col - 1), (row - 1)].isBomb == true)
                 counter++;
 
-            if (col + 1 <= 9 && row - 1 >= 0 && GameGrid[(col + 1), (row - 1)].isBomb == true)
+            if (col + 1 < _gridWidth && row - 1 >= 0 && _gameGrid[(col + 1), (row - 1)].isBomb == true)
                 counter++;
 
-            if (col + 1 <= 9 && row + 1 <= 9 && GameGrid[(col + 1), (row + 1)].isBomb == true)
+            if (col + 1 < _gridWidth && row + 1 < _gridHeight && _gameGrid[(col + 1), (row + 1)].isBomb == true)
                 counter++;
 
-            if (col - 1 > 0 && row + 1 <= 9 && GameGrid[(col - 1), (row + 1)].isBomb == true)
+            if (col - 1 > 0 && row + 1 < _gridHeight && _gameGrid[(col - 1), (row + 1)].isBomb == true)
                 counter++;
 
             return $"There are {counter} bomb(s) nearby";
